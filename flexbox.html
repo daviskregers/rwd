@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning flexbox</title>
+    <style>
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        .container {
+            border: 5px solid #ffcc5c;
+            margin: 30px 0;
+        }
+        
+        .container:not(.images) > div {
+            text-align: center;
+            font-weight: bold;
+            font: Arial;
+            color: antiquewhite;
+            padding: 5px 7px;
+        }
+
+        .container:not(.images) > div:nth-child(odd) {
+            background: #86C4B5;
+        }
+
+        .container:not(.images) > div:nth-child(even) {
+            background: #FF7262;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-row {
+            flex-direction: row;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }    
+
+        .justify-start {
+            justify-content: flex-start;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-space-around {
+            justify-content: space-around;
+        }
+
+        .justify-space-between {
+            justify-content: space-between;
+        }
+
+        .justify-space-evenly {
+            justify-content: space-evenly;
+        }
+
+        .positioning-1 > div {
+            flex: 1; /* width: 33.33333% */
+        }
+
+        .positioning-2 > div {
+            flex: 1;
+        }
+
+        .positioning-2 > .search {
+            flex: 2;
+        }
+
+        .positioning-3 {
+            height: 100px;
+        }
+
+        .align-start {
+            align-items: flex-start;
+        }
+
+        .align-end {
+            align-items: flex-end;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .align-stretch {
+            align-items: stretch;
+        }
+
+        .self-start .search {
+            align-self: flex-start;
+        }
+
+        .ordered .search {
+            order: -1;
+        }
+
+        .ordered-rev .search {
+            order: 1;
+        }
+
+        .wrap, .wrap-2 {
+            flex-wrap: wrap;
+        }
+
+        .wrap > div {
+            flex: 1 1 48%;
+        }
+
+        .wrap-2 > div {
+            flex: 1 1 100%;
+        }
+
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .images div.small {
+            flex: 1 1 150px;
+        }
+
+        .images div.big {
+            flex: 1 1 250px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Flexbox</h1>
+
+    <h2>Direction: row</h2>
+
+    <nav class="container flex flex-row">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Direction: column</h2>
+
+    <nav class="container flex flex-col">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: flex-start</h2>
+
+    <nav class="container flex flex-row justify-start">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: flex-end</h2>
+
+    <nav class="container flex flex-row justify-end">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: center</h2>
+
+    <nav class="container flex flex-row justify-center">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: space-around</h2>
+
+    <nav class="container flex flex-row justify-space-around">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: space-between</h2>margins
+    <nav class="container flex flex-row justify-space-between">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Justify-content: space-evenly</h2>
+
+    <nav class="container flex flex-row justify-space-evenly">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>Potitioning items</h2>
+
+<pre>
+`flex: 1` is the same as having
+```
+flex: 1 1 0;
+OR
+flex-shrink: 1;
+flex-grow: 1;
+flex-basis: 0;
+```
+</pre>
+
+    <h2>flex: 1 on all elements</h2>
+
+    <nav class="container flex flex-row positioning-1">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>flex: 2 on search (same as flex-grow: 2)</h2>
+
+    <nav class="container flex flex-row positioning-2">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+    
+    <h2>align-items: stretch</h2>
+
+    <nav class="container flex flex-row positioning-3 align-stretch">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>align-items: flex-start</h2>
+
+    <nav class="container flex flex-row positioning-3 align-start">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>align-items: flex-end</h2>
+
+    <nav class="container flex flex-row positioning-3 align-end">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>align-items: center</h2>
+
+    <nav class="container flex flex-row positioning-3 align-center">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>align-self: flex-start</h2>
+
+    <nav class="container flex flex-row positioning-3 self-start">
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
+    </nav>
+
+    <h2>search: order: -1</h2>
+
+    <nav class="container flex flex-row positioning-3 ordered">
+        <div class="home">1 Home</div>
+        <div class="search">2 Search</div>
+        <div class="logout">3 Logout</div>
+    </nav>
+
+    <h2>search: order: 1</h2>
+
+    <nav class="container flex flex-row positioning-3 ordered-rev">
+        <div class="home">1 Home</div>
+        <div class="search">2 Search</div>
+        <div class="logout">3 Logout</div>
+    </nav>
+
+    <h2>flex-wrap: wrap and 48% basis</h2>
+
+    <nav class="container flex flex-row wrap">
+        <div class="home">1 Home</div>
+        <div class="search">2 Profile</div>
+        <div class="logout">3 Search</div>
+        <div class="logout">4 Logout</div>
+    </nav>
+
+    <h2>flex-wrap: wrap and 100% basis</h2>
+
+    <nav class="container flex flex-row wrap-2">
+        <div class="home">1 Home</div>
+        <div class="search">2 Profile</div>
+        <div class="logout">3 Search</div>
+        <div class="logout">4 Logout</div>
+    </nav>
+
+    <h2>Flex image grid</h2>
+
+    <div class="container images">
+        <div class="small"><img src="http://lorempixel.com/150/84" /></div>
+        <div class="small"><img src="http://lorempixel.com/150/84" /></div>
+        <div class="small"><img src="http://lorempixel.com/150/84" /></div>
+        <div class="small"><img src="http://lorempixel.com/175/98" /></div>
+        <div class="small"><img src="http://lorempixel.com/250/141" /></div>
+        <div class="small"><img src="http://lorempixel.com/300/169" /></div>
+        <div class="small"><img src="http://lorempixel.com/250/141" /></div>
+        <div class="small"><img src="http://lorempixel.com/250/141" /></div>
+        <div class="small"><img src="http://lorempixel.com/50/28" /></div>
+        <div class="big"><img src="http://lorempixel.com/500/281" /></div>
+        <div class="big"><img src="http://lorempixel.com/550/281" /></div>
+        <div class="big"><img src="http://lorempixel.com/550/281" /></div>
+        <div class="small"><img src="http://lorempixel.com/1550/900" /></div>
+        <div class="small"><img src="http://lorempixel.com/1550/900" /></div>
+        <div class="small"><img src="http://lorempixel.com/50/28" /></div>
+        <div class="small"><img src="http://lorempixel.com/500/281" /></div>
+        <div class="big"><img src="http://lorempixel.com/550/281" /></div>
+        <div class="big"><img src="http://lorempixel.com/550/281" /></div>
+        <div class="small"><img src="http://lorempixel.com/1550/900" /></div>
+        <div class="small"><img src="http://lorempixel.com/1550/900" /></div>
+    </div>
+
+
+</body>
+</html>
